@@ -11,6 +11,7 @@
     flex-basis: 100px;
     text-align: center;
 }
+
 .rodape nav{
     flex-grow: 1;
     display: flex;
@@ -23,9 +24,10 @@
     padding: 5% 0;
 }
 
-.rodape nav a.hover{
-    background-color:rgba(99, 99, 99, 0.504);
+.rodape nav a:hover{
+    background-color: rgba(75, 72, 72, 0.664);
 }
+
 
 .rodape nav img{
     max-width: 20%;

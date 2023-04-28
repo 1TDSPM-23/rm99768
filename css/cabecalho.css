@@ -1,25 +1,26 @@
-.cabecalho{
+.cabecalho {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    background-color:#000000;
+    background-color: #000000;
 }
 
-.cabecalho img{
+.cabecalho img {
     width: 30%;
     max-width: 30%;
     display: block;
 }
 
-.cabecalho nav{
-     display: flex;
+.cabecalho nav {
+    display: flex;
     justify-content: space-around;
     width: 60%;
     height: 100%;
+    flex-wrap: wrap;
 }
 
-.cabecalho a{ 
+.cabecalho a {
     text-decoration: none;
     color: blue;
     text-align: center;
@@ -29,7 +30,7 @@
     padding: 20% 0;
 }
 
-.cabecalho a:hover{
-    background-color: black;
-    color: white;
+.cabecalho a:hover {
+    background-color: #fff;
+    color: #000000;
 }
