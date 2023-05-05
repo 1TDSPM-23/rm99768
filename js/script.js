@@ -58,3 +58,48 @@ const nome3 = "Violante";
 // }
 // //Qual é o nome que será impresso no log? 
 // console.log(nome);
+
+//Array e seus métodos
+
+let frutas = ["banana","morango","maçã","carambola","laranja","acerola"];
+
+//Imprimindo o array 
+console.log(frutas);
+console.table(frutas);
+console.log(frutas[4]);
+
+//Adicionar um item ao final do array com método push(item)
+frutas.push("melão");
+console.log(frutas);
+
+//Adicionar um item ao final do array com método push(item)
+frutas.unshift("caju");
+console.log(frutas);
+
+//Remover um item do final do array com método pop()
+frutas.pop();
+console.log(frutas);
+
+//Remover um item do início do array com método shift() 
+frutas.shift();
+console.log(frutas);
+
+//Para localizar um item dentro do array, utilizamos o método indexOf(itemNome)
+// let indice = frutas.indexOf("morango");
+// console.log(frutas[indice]);
+
+//Para localizar um item dentro do array, e apagar ele utilizamos o método splice(indice do item)
+//e a quantidade de vezes que  indice será removido). 
+//Obs: utilize o metodo indexOf(ItemNome) para obter o indice do item
+let indice = frutas.indexOf("carambola");
+console.log("Fruta que estava no indice antes da remoção: " +frutas[indice]);
+frutas.splice(indice,1);
+console.log("Fruta que ficou no indice após remoção: " + frutas[indice]);
+
+frutas.forEach( (fruta)=>{
+    console.log("olha ele: " + fruta);
+} );
+
+
+
+
