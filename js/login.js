@@ -29,38 +29,40 @@
 // listaDeUsuarios.push(usuario1);
 // listaDeUsuarios.push(usuario2);
 //LISTA DE USUÁRIOS
-let listaDeUsuarios = [
-    {
-        nomeCompleto : "Enio Casper",
-        nomeUsuario : "enio",
-        senhaUsuario : "123456",
-        ccuUsuario : "sc"
-    },
-    {
-        nomeCompleto : "Danid Silva",
-        nomeUsuario : "danid",
-        senhaUsuario : "123456",
-        ccuUsuario : "rj"
-    },
-    {
-        nomeCompleto : "Gerson Lima",
-        nomeUsuario : "gege",
-        senhaUsuario : "123456",
-        ccuUsuario : "sp"
-    },
-    {
-        nomeCompleto : "Jorginho Lima",
-        nomeUsuario : "jojo",
-        senhaUsuario : "123456",
-        ccuUsuario : "rj"
-    },
-    {
-        nomeCompleto : "Edulado Biolante",
-        nomeUsuario : "dudu",
-        senhaUsuario : "123456",
-        ccuUsuario : "sp"
-    }
-];
+// let listaDeUsuarios = [
+//     {
+//         nomeCompleto : "Enio Casper",
+//         nomeUsuario : "enio",
+//         senhaUsuario : "123456",
+//         ccuUsuario : "sc"
+//     },
+//     {
+//         nomeCompleto : "Danid Silva",
+//         nomeUsuario : "danid",
+//         senhaUsuario : "123456",
+//         ccuUsuario : "rj"
+//     },
+//     {
+//         nomeCompleto : "Gerson Lima",
+//         nomeUsuario : "gege",
+//         senhaUsuario : "123456",
+//         ccuUsuario : "sp"
+//     },
+//     {
+//         nomeCompleto : "Jorginho Lima",
+//         nomeUsuario : "jojo",
+//         senhaUsuario : "123456",
+//         ccuUsuario : "rj"
+//     },
+//     {
+//         nomeCompleto : "Edulado Biolante",
+//         nomeUsuario : "dudu",
+//         senhaUsuario : "123456",
+//         ccuUsuario : "sp"
+//     }
+// ];
+
+// localStorage.setItem("listaUser", JSON.stringify(listaDeUsuarios));
 
 const msgStatus = document.querySelector("#msg");
 const formLogin = document.querySelector("form[name='frm01']")
@@ -82,6 +84,9 @@ botaoSubmit.addEventListener("click", ()=>{
     //OBJETO USUÁRIO-VALIDADO
     let usuarioValidado = {};
 
+    //Recuperando a lista de usuários do localStorage
+    let listaDeUsuarios = JSON.parse(localStorage.getItem("listaUser"));
+
     if(usuarioLogado.nomeUsuarioLogado != "" && usuarioLogado.senhaUsuarioLogado != "" && usuarioLogado.ccuUsuarioLogado != "0"){
 
        for (let x = 0; x < listaDeUsuarios.length; x++) {
@@ -97,16 +102,28 @@ botaoSubmit.addEventListener("click", ()=>{
         console.log("EXISTE ALGUM CAMPO SEM PREENCHIMENTO!")
     }
 
-
-    if(usuarioValidado != null){
+    if(usuarioValidado.nomeUsuario != undefined){
         msgStatus.setAttribute("style","color:#00ff00");
         msgStatus.innerHTML = `<span><strong>O usuário ${usuarioValidado.nomeCompleto} fez o login com SUCESSO!!</strong></span>`;
+
+        //Adicionar o usuário validado no localStorage
+        localStorage.setItem("user-validado", JSON.stringify(usuarioValidado));
+
+        //Criando token de autenticação
+        const token = Math.random().toString(16).substring(2)+Math.random().toString(16).substring(2);
+        //Adicionando o toke no localStorage
+        localStorage.setItem("user-token",token);
+
+        //Redirect
+        setTimeout(()=>{
+            window.location.href = "../index.html";
+        }, 3000);
+
     }
     else{
         msgStatus.setAttribute("style","color:#ff0000");
         msgStatus.innerHTML = `<span><strong>Nome de usuário ou senha inválidos...</strong></span>`;
     }
-
 
 });
 
@@ -146,9 +163,6 @@ function validaFormularioCompleto() {
         console.log("EXISTE ALGUM CAMPO SEM PREENCHIMENTO!")
     }
 }
-
-// const form1 = document.querySelector("form[name='frm01']");
-// // console.log(form1);
 
 // form1.addEventListener("submit", ()=>{
     const inputUser = document.querySelector("#idNm");
